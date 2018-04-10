@@ -1,0 +1,11 @@
+First Run:
+ 1. Run setup-networks.sh
+ 2. Run run_all.sh
+ 3. Run setup-kong.sh
+ 4. Run run_visualize.sh
+
+Update Stack Service:
+ 1. Run run_all.sh
+ 2. Run run_visualize.sh
+
+Configurations: file .env

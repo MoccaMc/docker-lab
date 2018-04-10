@@ -1,0 +1,1 @@
+docker stack deploy --compose-file=<(docker-compose -f cdgs-frontend.yml config) cdgs-frontend

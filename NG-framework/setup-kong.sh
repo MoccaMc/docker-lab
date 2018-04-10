@@ -1,0 +1,1 @@
+docker run --rm -it --network fw-kong_kong-link -e KONG_DATABASE=cassandra -e KONG_CASSANDRA_CONTACT_POINTS=kong-database -e KONG_DB_UPDATE_PROPAGATION=5 kong kong migrations up

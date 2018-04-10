@@ -1,0 +1,1 @@
+docker stack deploy --compose-file=<(docker-compose -f fw-authen.yml config) fw-authen

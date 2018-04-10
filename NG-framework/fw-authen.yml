@@ -1,0 +1,35 @@
+version: '3.3'
+services:
+  keycloak:
+    image: 10.254.40.142:8082/cdgs-ee-images/keycloak:3.4.3.Final
+    environment: 
+      DB_VENDOR: ORACLE
+      ORACLE_ADDR: ${KEYCLOAK_ORACLE_ADDR}
+      ORACLE_PORT: ${KEYCLOAK_ORACLE_PORT}
+      ORACLE_DATABASE: ${KEYCLOAK_ORACLE_DATABASE}
+      ORACLE_USER: ${KEYCLOAK_ORACLE_USER}
+      ORACLE_PASSWORD: ${KEYCLOAK_ORACLE_PASSWORD}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      KEYCLOAK_LOGLEVEL: INFO
+      PROXY_ADDRESS_FORWARDING: 'true'
+      JAVA_OPTS: ${KEYCLOAK_JAVA_OPTS}
+      MALLOC_ARENA_MAX: ${MALLOC_ARENA_MAX}
+    ports: 
+      - 8080
+    networks:
+      - app-internal-link
+    command: ["-b", "0.0.0.0", "--server-config", "standalone-ha.xml"]
+    deploy:
+      mode: global
+#      placement:
+#        constraints: [node.role == manager]
+      resources:
+        limits:
+          memory: ${KEYCLOAK_LIMITS_MEMORY}
+        reservations:
+          memory: ${KEYCLOAK_RESERVATIONS_MEMORY}
+networks:
+  app-internal-link:
+    external:
+      name: app-internal-link

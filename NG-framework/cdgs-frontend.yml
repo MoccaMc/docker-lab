@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  web:
+    image: 10.254.40.142:8082/cdgs-ui/cdgs-ui-server:1.3.9-prod
+    ports:
+      - 5000
+    networks:
+      - app-internal-link
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.role == manager]
+      resources:
+        limits:
+          memory: ${FRONTEND_LIMITS_MEMORY}
+networks:
+  app-internal-link:
+    external:
+      name: app-internal-link

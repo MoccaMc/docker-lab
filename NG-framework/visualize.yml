@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "9001:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+  portainer:
+    image: portainer/portainer
+    command: ["-H","unix:///var/run/docker.sock"]
+    ports:
+      - "9000:9000"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer-data:/data"
+volumes:
+  portainer-data:
+    driver: local
+    driver_opts: 
+      type: none
+      device: ${PORTAINER_PATH}
+      o: bind

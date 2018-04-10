@@ -1,2 +1,4 @@
-FROM nginx:1.13.10-alpine
+FROM nginx
+RUN apt-get update
+RUN apt-get install -y nano wget
 ADD web /usr/share/nginx/html

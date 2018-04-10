@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  example:
+    image: 10.254.40.142:8082/cdgs-ee-images/example:latest
+    environment:
+      - SWARM_OTPS=-Stest
+      - JAVA_OPTS=${MEM_OPTS}
+      - MALLOC_ARENA_MAX=${MALLOC_ARENA_MAX}
+    volumes:
+      - swarm-data:/opt/swarm:Z
+    ports:
+      - 8080
+    networks:
+      - app-internal-link
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: ${CDGS_EE_LIMITS_MEMORY}
+        reservations:
+          memory: ${CDGS_EE_RESERVATIONS_MEMORY}
+volumes:
+  swarm-data:
+    driver: local
+    driver_opts: 
+      type: none
+      device: ${BACKEND_PATH}
+      o: bind
+networks:
+  app-internal-link:
+    external:
+      name: app-internal-link

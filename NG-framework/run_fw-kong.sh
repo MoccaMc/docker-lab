@@ -1,0 +1,1 @@
+docker stack deploy --compose-file=<(docker-compose -f fw-kong.yml config) fw-kong
