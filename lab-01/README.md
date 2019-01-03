@@ -8,7 +8,7 @@ cd ~/docker-lab/lab-01/
 
 docker pull nginx
 
-docker run -itd -p 80:80 nginx
+docker run -itd -p 80:80 nginx:1.13.10-alpine
 
 docker ps
 
