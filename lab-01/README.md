@@ -12,6 +12,7 @@ docker ps
 docker rm [name / id]
 
 docker run -itd --name ngx1 -p 81:80 -v /root/docker-lab/lab-01/web1:/usr/share/nginx/html nginx
+
 docker run -itd --name ngx2 -p 82:80 -v /root/docker-lab/lab-01/web2:/usr/share/nginx/html nginx:1.13.10-alpine
 
 docker images
