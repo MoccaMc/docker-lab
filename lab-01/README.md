@@ -8,7 +8,13 @@ cd ~/docker-lab/lab-01/
 
 docker pull nginx
 
-docker run -itd -p 80:80 nginx:1.13.10-alpine
+docker run -itd --name my-nginx -p 9901:80 nginx:1.13.10-alpine
+
+docker run -itd --name my-httpd -p 9902:80 httpd
+
+docker run -itd --name my-tomcat-8 -p 9903:8080 tomcat:8.0
+
+docker run -itd --name my-tomcat-9 -p 9904:8080 tomcat:9.0.14-jre11-slim
 
 docker ps
 
