@@ -3,24 +3,30 @@ https://labs.play-with-docker.com
 
 https://hub.docker.com/_/nginx/
 
+git clone https://github.com/MoccaMc/docker-lab.git
+cd ~/docker-lab/lab-01/
+
 docker pull nginx
-
 docker run -itd -p 80:80 nginx
-
 docker ps
-
 docker rm [name / id]
 
-mkdir /root/web
-vi index.html 
+docker run -itd --name ngx1 -p 81:80 -v /root/docker-lab/lab-01/web1:/usr/share/nginx/html nginx
+docker run -itd --name ngx2 -p 82:80 -v /root/docker-lab/lab-01/web2:/usr/share/nginx/html nginx:1.13.10-alpine
+
+docker images
+docker ps -a
+
+docker stop [name / id]
+docker stop $(docker ps -a -q)
+docker start [name / id]
+
+docker rm -f $(docker ps -a -q)
+
+index.html 
 <html>
     <body>
         <h1>My Web1</h1>
     </body>
 </html>
-
-docker run -itd -p 80:80 -v /root/web:/usr/share/nginx/html nginx
-http://ip172-18-0-11-bb019gdeoia0009n7m3g-80.direct.labs.play-with-docker.com
-
-
 
