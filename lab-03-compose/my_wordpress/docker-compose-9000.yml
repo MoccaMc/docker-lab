@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-   db:
+   db9000:
      image: mysql:5.7
      volumes:
        - db_data:/var/lib/mysql
@@ -14,7 +14,7 @@ services:
 
    wordpress-9000:
      depends_on:
-       - db
+       - db9000
      image: wordpress:latest
      ports:
        - "9000:80"
